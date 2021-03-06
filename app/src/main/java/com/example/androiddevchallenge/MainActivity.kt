@@ -16,13 +16,18 @@
 package com.example.androiddevchallenge
 
 import android.os.Bundle
+import android.util.Range
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.androiddevchallenge.data.CatRepository
+import com.example.androiddevchallenge.ui.components.ItemCatCard
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -36,26 +41,20 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-// Start building your app here!
 @Composable
 fun MyApp() {
     Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+        val list = CatRepository.generateRandomCatList(15)
+        LazyColumn(content = {
+            items(list){ catItem -> ItemCatCard(cat = catItem, onItemClicked = { }) }
+        })
     }
 }
 
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun LightPreview() {
-    MyTheme {
-        MyApp()
-    }
-}
-
-@Preview("Dark Theme", widthDp = 360, heightDp = 640)
+@Preview("Preview", widthDp = 360, heightDp = 640)
 @Composable
 fun DarkPreview() {
-    MyTheme(darkTheme = true) {
+    MyTheme {
         MyApp()
     }
 }
