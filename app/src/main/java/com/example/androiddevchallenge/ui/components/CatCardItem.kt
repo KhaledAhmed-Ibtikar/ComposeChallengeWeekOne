@@ -4,11 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,18 +20,19 @@ import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.CatRepository
 import com.example.androiddevchallenge.entities.Cat
 import com.example.androiddevchallenge.ui.theme.catCardColorList
+import com.google.android.material.color.MaterialColors
 
 
 @Composable
-fun ItemCatCard(cat: Cat, onItemClicked: (cat: Cat) -> Unit) {
+fun CatCardItem(cat: Cat, onCatCardClicked: (cat: Cat) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
             .clip(RoundedCornerShape(16.dp))
-            .clickable(onClick = { onItemClicked(cat) }),
+            .clickable(onClick = { onCatCardClicked(cat) }),
         elevation = 0.dp,
-        backgroundColor = catCardColorList.random()
+        backgroundColor = MaterialTheme.colors.onPrimary
     ) {
         Row(
             modifier = Modifier
@@ -106,6 +104,6 @@ fun ItemCatCard(cat: Cat, onItemClicked: (cat: Cat) -> Unit) {
 
 @Preview
 @Composable
-fun ItemCatCardPreview() {
-    ItemCatCard(cat = CatRepository.generateRandomCatList(1).first(), onItemClicked = { })
+fun CatCardItemPreview() {
+    CatCardItem(cat = CatRepository.generateRandomCatList(1).first(), onCatCardClicked = { })
 }
