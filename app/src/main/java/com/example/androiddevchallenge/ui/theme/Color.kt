@@ -22,6 +22,4 @@ val purple500 = Color(0xFF6200EE)
 val purple700 = Color(0xFF3700B3)
 val teal200 = Color(0xFF03DAC5)
 val darkGrey = Color(0xFF575757)
-val lightGrey = Color(0xFFB3B0B0)
-
-val catCardColorList = listOf(purple200, teal200, purple500)
+val lightGrey = Color(0xFFD3D3D3)

@@ -15,11 +15,14 @@
  */
 package com.example.androiddevchallenge.ui.theme
 
+import android.view.Window
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import com.example.androiddevchallenge.utils.TransparentStatusBar
 
 private val DarkColorPalette = darkColors(
     primary = purple200,
@@ -33,19 +36,10 @@ private val LightColorPalette = lightColors(
     primaryVariant = purple700,
     secondary = teal200,
     onPrimary = lightGrey
-
-        /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
 )
 
 @Composable
-fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun AppTheme(activityWindow: Window, darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
@@ -55,7 +49,11 @@ fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () 
     MaterialTheme(
         colors = colors,
         typography = typography,
-        shapes = shapes,
-        content = content
-    )
+        shapes = shapes
+    ) {
+        Surface(color = MaterialTheme.colors.background) {
+            TransparentStatusBar(activityWindow)
+            content()
+        }
+    }
 }

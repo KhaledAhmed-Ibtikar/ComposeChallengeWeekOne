@@ -19,8 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.CatRepository
 import com.example.androiddevchallenge.entities.Cat
-import com.example.androiddevchallenge.ui.theme.catCardColorList
-import com.google.android.material.color.MaterialColors
 
 
 @Composable
@@ -57,7 +55,6 @@ fun CatCardItem(cat: Cat, onCatCardClicked: (cat: Cat) -> Unit) {
                 Text(
                     text = cat.name,
                     modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
-                    color = MaterialTheme.colors.surface,
                     fontWeight = FontWeight.Bold,
                     style = typography.subtitle1
                 )
@@ -70,7 +67,6 @@ fun CatCardItem(cat: Cat, onCatCardClicked: (cat: Cat) -> Unit) {
                         append(cat.gender)
                     },
                     modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
-                    color = MaterialTheme.colors.surface,
                     style = typography.caption
                 )
 
@@ -86,7 +82,6 @@ fun CatCardItem(cat: Cat, onCatCardClicked: (cat: Cat) -> Unit) {
                     Text(
                         text = cat.location,
                         modifier = Modifier.padding(8.dp, 12.dp, 12.dp, 0.dp),
-                        color = MaterialTheme.colors.surface,
                         style = typography.caption
                     )
                 }
