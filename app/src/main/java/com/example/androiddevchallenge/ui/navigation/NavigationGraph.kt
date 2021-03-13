@@ -1,5 +1,7 @@
-package com.example.androiddevchallenge.ui
+package com.example.androiddevchallenge.ui.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,6 +12,8 @@ import com.example.androiddevchallenge.ui.screens.CatList
 import com.example.androiddevchallenge.utils.Extensions.getParcelableData
 import com.example.androiddevchallenge.utils.Extensions.navigateWithParcelableData
 
+@ExperimentalAnimationApi
+@ExperimentalFoundationApi
 @Composable
 fun NavigationGraph(startDestination: String) {
     val navController = rememberNavController()
@@ -27,7 +31,11 @@ fun NavigationGraph(startDestination: String) {
             composable(
                 route = Screen.CatDetails.route,
                 content = {
-                    getParcelableData<Cat>(KEY_CAT)?.also { cat -> CatDetails(cat = cat) }
+                    getParcelableData<Cat>(KEY_CAT)?.also { cat ->
+                        CatDetails(
+                            cat = cat,
+                            onBackButtonClick = { navController.popBackStack() })
+                    }
                 })
         }
     }

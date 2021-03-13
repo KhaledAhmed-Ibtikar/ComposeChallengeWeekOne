@@ -18,12 +18,16 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androiddevchallenge.ui.NavigationGraph
-import com.example.androiddevchallenge.ui.Screen
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
+import com.example.androiddevchallenge.ui.navigation.NavigationGraph
+import com.example.androiddevchallenge.ui.navigation.Screen
 import com.example.androiddevchallenge.ui.theme.AppTheme
 
 class StartActivity : AppCompatActivity() {
 
+    @ExperimentalFoundationApi
+    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

@@ -3,11 +3,17 @@ package com.example.androiddevchallenge.ui.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -22,8 +28,13 @@ import com.example.androiddevchallenge.entities.Cat
 
 
 @Composable
-fun CatDetails(cat: Cat) {
-    Column(Modifier.background(color = MaterialTheme.colors.onPrimary).fillMaxHeight()) {
+fun CatDetails(cat: Cat, onBackButtonClick : () -> Unit) {
+    Column(
+        Modifier
+            .background(color = MaterialTheme.colors.onPrimary)
+            .fillMaxHeight()
+            .verticalScroll(rememberScrollState()) // Behaves like ScrollView
+    ) {
         Image(
             painter = painterResource(cat.image), modifier = Modifier.fillMaxWidth(),
             contentDescription = "Cat image",
@@ -63,11 +74,19 @@ fun CatDetails(cat: Cat) {
                 .padding(12.dp),
             style = MaterialTheme.typography.body1
         )
+        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            Button(modifier = Modifier
+                .padding(20.dp)
+                .clip(RoundedCornerShape(8.dp))
+                , onClick = { onBackButtonClick() }) {
+                Text(text = "Go back")
+            }
+        }
     }
 }
 
 @Preview
 @Composable
 fun CatDetailsPreview() {
-    CatDetails(CatRepository.generateRandomCatList(1).first())
+    CatDetails(CatRepository.generateRandomCatList(1).first(), onBackButtonClick = {})
 }
