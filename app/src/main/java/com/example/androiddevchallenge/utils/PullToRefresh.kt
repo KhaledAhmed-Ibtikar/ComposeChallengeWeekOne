@@ -1,18 +1,41 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge.utils
 
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.absoluteOffset
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ProgressIndicatorDefaults
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.CombinedModifier
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -20,12 +43,10 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
 
-
 private const val MAX_OFFSET = 400f
 private const val MIN_REFRESH_OFFSET = 250f
 private const val PERCENT_INDICATOR_PROGRESS_ON_DRAG = 0.85f
 private const val BASE_OFFSET = -48
-
 
 /**
  * A layout composable with [content].
@@ -68,7 +89,8 @@ fun PullToRefresh(
         finishedListener = {
             indicatorOffset = 0f
             isFinishingRefresh = false
-        })
+        }
+    )
     val offsetAnimation by animateFloatAsState(
         targetValue = if (isRefreshing || isFinishingRefresh) {
             indicatorOffset - minRefreshOffset
@@ -87,7 +109,8 @@ fun PullToRefresh(
                 indicatorOffset = 0f
                 isResettingScroll = false
             }
-        })
+        }
+    )
 
     if (isResettingScroll) {
         indicatorOffset -= resettingScrollOffsetAnimation
