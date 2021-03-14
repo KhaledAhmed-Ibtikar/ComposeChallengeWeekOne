@@ -2,10 +2,12 @@
 
 ![Workflow result](https://github.com/KhaledAhmed-Ibtikar/ComposeChallengeWeekOne/workflows/Check/badge.svg)
 
+## :scroll: Description
+It's an app where you can browse cats ready for adoption.
 
-## It's an app where you can browse cats ready for adoption.
 
-## :bulb: Fully in Compose, used Compose navigation, pull to refresh, stateful composables using remember and mutableState  
+## :bulb: Motivation and Context
+Built fully in Compose using Compose navigation, pull to refresh and stateful composables using remember and mutableState.  
 
 ## :camera_flash: Screenshots
 <img src="/results/screenshot_1.jpeg" width="260">&emsp;<img src="/results/screenshot_2.jpeg" width="260">
