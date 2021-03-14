@@ -1,6 +1,6 @@
 # Cat adpotion app
 
-![Workflow result](https://github.com/<OWNER>/<REPOSITORY>/workflows/Check/badge.svg)
+![Workflow result](https://github.com/KhaledAhmed-Ibtikar/ComposeChallengeWeekOne/workflows/Check/badge.svg)
 
 
 ## It's an app where you can browse cats ready for adoption.
